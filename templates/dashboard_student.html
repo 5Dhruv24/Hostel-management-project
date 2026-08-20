@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Smart Hostel System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dash-shell">
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <span class="brand-dot"></span> Smart Hostel
+        </div>
+
+        <nav class="sidebar-nav">
+            <span class="nav-label">Overview</span>
+            <a href="{{ url_for('student_dashboard') }}" class="nav-link active">🏠 Home</a>
+
+            <span class="nav-label">Functions</span>
+            <a href="{{ url_for('coming_soon', feature='Hostel & Room Information') }}" class="nav-link">🏢 Hostel & Room Info</a>
+            <a href="{{ url_for('coming_soon', feature='Student Application') }}" class="nav-link">📝 Student Application</a>
+            <a href="{{ url_for('coming_soon', feature='Hostel Information') }}" class="nav-link">ℹ️ Hostel Information</a>
+            <a href="{{ url_for('coming_soon', feature='Communication') }}" class="nav-link">💬 Communication</a>
+            <a href="{{ url_for('coming_soon', feature='Complaint') }}" class="nav-link">⚠️ Complaint</a>
+            <a href="{{ url_for('coming_soon', feature='Room Availability / Vacancy') }}" class="nav-link">🛏️ Room Availability</a>
+            <a href="{{ url_for('coming_soon', feature='Transfer Request') }}" class="nav-link">🔄 Transfer Request</a>
+            <a href="{{ url_for('coming_soon', feature='Cancel / Withdraw') }}" class="nav-link">❌ Cancel / Withdraw</a>
+        </nav>
+
+        <a href="{{ url_for('logout') }}" class="sidebar-logout">🚪 Logout</a>
+    </aside>
+
+    <div class="dash-content">
+        <header class="dash-topbar">
+            <div>
+                <h2>Welcome back, {{ user_id }} 👋</h2>
+                <p>Here's a quick look at your hostel application and facilities.</p>
+            </div>
+            <div class="topbar-avatar">{{ user_id[0]|upper }}</div>
+        </header>
+
+        <section class="stat-grid">
+            <a href="{{ url_for('coming_soon', feature='Student Application') }}" class="stat-card accent-amber">
+                <div class="stat-icon">📝</div>
+                <div>
+                    <h4>Application</h4>
+                    <p>Not submitted yet</p>
+                </div>
+            </a>
+
+            <a href="{{ url_for('coming_soon', feature='Room Availability / Vacancy') }}" class="stat-card accent-teal">
+                <div class="stat-icon">🛏️</div>
+                <div>
+                    <h4>Room Availability</h4>
+                    <p>Check open vacancies</p>
+                </div>
+            </a>
+
+            <a href="{{ url_for('coming_soon', feature='Hostel & Room Information') }}" class="stat-card accent-violet">
+                <div class="stat-icon">🏢</div>
+                <div>
+                    <h4>Hostel & Rooms</h4>
+                    <p>Browse blocks & photos</p>
+                </div>
+            </a>
+
+            <a href="{{ url_for('coming_soon', feature='Communication') }}" class="stat-card accent-rose">
+                <div class="stat-icon">💬</div>
+                <div>
+                    <h4>Communication</h4>
+                    <p>Contact warden / admin</p>
+                </div>
+            </a>
+
+            <a href="{{ url_for('coming_soon', feature='Complaint') }}" class="stat-card accent-red">
+                <div class="stat-icon">⚠️</div>
+                <div>
+                    <h4>Complaint</h4>
+                    <p>Report an issue</p>
+                </div>
+            </a>
+
+            <a href="{{ url_for('coming_soon', feature='Transfer Request') }}" class="stat-card accent-blue">
+                <div class="stat-icon">🔄</div>
+                <div>
+                    <h4>Transfer Request</h4>
+                    <p>Change room / hostel</p>
+                </div>
+            </a>
+        </section>
+
+        <section class="gallery-section">
+            <h3>Hostel Gallery</h3>
+            <div class="gallery-grid">
+                <div class="gallery-card">
+                    <img src="https://picsum.photos/seed/hostelbuilding/500/320" alt="Hostel building">
+                    <div class="gallery-caption">
+                        <h4>Hostel Block A</h4>
+                        <p>4-storey building, 120 rooms, boys hostel</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="https://picsum.photos/seed/hostelroom/500/320" alt="Hostel room">
+                    <div class="gallery-caption">
+                        <h4>Standard Room</h4>
+                        <p>2-seater, attached balcony, study table</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="https://picsum.photos/seed/hostelcanteen/500/320" alt="Canteen">
+                    <div class="gallery-caption">
+                        <h4>Canteen</h4>
+                        <p>Open 7 AM - 10 PM, mess facility available</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="https://picsum.photos/seed/hostelcommon/500/320" alt="Common room">
+                    <div class="gallery-caption">
+                        <h4>Common Room</h4>
+                        <p>TV, indoor games, study lounge</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

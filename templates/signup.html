@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up - Smart Hostel System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="auth-wrapper">
+        <div class="brand">
+            <span class="tag">Smart Hostel System</span>
+            <h1>Create your account</h1>
+        </div>
+
+        <div class="glass-card">
+            <h3>Sign up</h3>
+
+            {% if error %}
+                <div class="error-box">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST" action="/signup">
+                <div class="field">
+                    <label>Choose a User ID</label>
+                    <input type="text" name="user_id" required>
+                </div>
+
+                <div class="field">
+                    <label>Choose a Password</label>
+                    <input type="password" name="password" required>
+                </div>
+
+                <div class="field">
+                    <label>Account Type</label>
+                    <select name="role" required>
+                        <option value="student">Student</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-glow">Sign Up</button>
+            </form>
+
+            <p class="switch-link">
+                Already have an account? <a href="/login">Login</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
