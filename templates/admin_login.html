@@ -2,39 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up - Smart Hostel System</title>
+    <title>Admin Login - Smart Hostel System</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="auth-wrapper">
         <div class="brand">
             <span class="tag">Smart Hostel System</span>
-            <h1>Create your account</h1>
+            <h1>Admin access</h1>
         </div>
 
         <div class="glass-card">
-            <h3>Sign up</h3>
+            <h3>Admin Login</h3>
 
             {% if error %}
                 <div class="error-box">{{ error }}</div>
             {% endif %}
 
-            <form method="POST" action="/signup">
+            <form method="POST" action="/admin-login">
                 <div class="field">
-                    <label>Choose a User ID</label>
+                    <label>Admin ID</label>
                     <input type="text" name="user_id" required>
                 </div>
 
                 <div class="field">
-                    <label>Choose a Password</label>
+                    <label>Password</label>
                     <input type="password" name="password" required>
                 </div>
 
-                <button type="submit" class="btn-glow">Sign Up</button>
+                <button type="submit" class="btn-glow">Login</button>
             </form>
 
             <p class="switch-link">
-                Already have an account? <a href="/login">Login</a>
+                <a href="/login">Back to student login</a>
             </p>
         </div>
     </div>

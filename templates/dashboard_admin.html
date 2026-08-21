@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Smart Hostel System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dash-shell">
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <span class="brand-dot"></span> Smart Hostel <span class="admin-tag">Admin</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <span class="nav-label">Overview</span>
+            <a href="{{ url_for('admin_dashboard') }}" class="nav-link active">🏠 Admin Dashboard</a>
+
+            <span class="nav-label">Management</span>
+            <a href="{{ url_for('coming_soon', feature='Preferences') }}" class="nav-link">🎯 Preferences</a>
+            <a href="{{ url_for('coming_soon', feature='Complaints') }}" class="nav-link">⚠️ Complaints</a>
+            <a href="{{ url_for('coming_soon', feature='Student List & Allocation') }}" class="nav-link">📋 Student List & Allocation</a>
+            <a href="{{ url_for('coming_soon', feature='Room Availability') }}" class="nav-link">🛏️ Room Availability</a>
+            <a href="{{ url_for('coming_soon', feature='Document Verification') }}" class="nav-link">📄 Document Verification</a>
+        </nav>
+
+        <a href="{{ url_for('logout') }}" class="sidebar-logout">🚪 Logout</a>
+    </aside>
+
+    <div class="dash-content">
+        <header class="dash-topbar">
+            <div>
+                <h2>Welcome, {{ user_id }} 👋</h2>
+                <p>Manage hostel allocation, complaints, and student records from here.</p>
+            </div>
+            <div class="topbar-avatar">{{ user_id[0]|upper }}</div>
+        </header>
+
+        <section class="stat-grid">
+            <a href="{{ url_for('coming_soon', feature='Student List & Allocation') }}" class="stat-card accent-violet">
+                <div class="stat-icon">📋</div>
+                <div>
+                    <h4>Student List & Allocation</h4>
+                    <p>See which room is allotted to which student</p>
+                </div>
+            </a>
+
+            <a href="{{ url_for('coming_soon', feature='Room Availability') }}" class="stat-card accent-teal">
+                <div class="stat-icon">🛏️</div>
+                <div>
+                    <h4>Room Availability</h4>
+                    <p>View available and occupied rooms/beds</p>
+                </div>
+            </a>
+
+            <a href="{{ url_for('coming_soon', feature='Preferences') }}" class="stat-card accent-amber">
+                <div class="stat-icon">🎯</div>
+                <div>
+                    <h4>Preferences</h4>
+                    <p>View student preferences relevant to allocation</p>
+                </div>
+            </a>
+
+            <a href="{{ url_for('coming_soon', feature='Complaints') }}" class="stat-card accent-red">
+                <div class="stat-icon">⚠️</div>
+                <div>
+                    <h4>Complaints</h4>
+                    <p>View and manage student complaints</p>
+                </div>
+            </a>
+
+            <a href="{{ url_for('coming_soon', feature='Document Verification') }}" class="stat-card accent-blue">
+                <div class="stat-icon">📄</div>
+                <div>
+                    <h4>Document Verification</h4>
+                    <p>Verify documents submitted by students</p>
+                </div>
+            </a>
+        </section>
+    </div>
+
+</body>
+</html>

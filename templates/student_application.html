@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hostel Application - Smart Hostel System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dash-shell">
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <span class="brand-dot"></span> Smart Hostel
+        </div>
+
+        <nav class="sidebar-nav">
+            <span class="nav-label">Overview</span>
+            <a href="{{ url_for('student_dashboard') }}" class="nav-link">🏠 Home</a>
+
+            <span class="nav-label">Functions</span>
+            <a href="{{ url_for('coming_soon', feature='Hostel & Room Information') }}" class="nav-link">🏢 Hostel & Room Info</a>
+            <a href="{{ url_for('apply_hostel') }}" class="nav-link active">📝 Student Application</a>
+            <a href="{{ url_for('coming_soon', feature='Hostel Information') }}" class="nav-link">ℹ️ Hostel Information</a>
+            <a href="{{ url_for('coming_soon', feature='Communication') }}" class="nav-link">💬 Communication</a>
+            <a href="{{ url_for('coming_soon', feature='Complaint') }}" class="nav-link">⚠️ Complaint</a>
+            <a href="{{ url_for('coming_soon', feature='Room Availability / Vacancy') }}" class="nav-link">🛏️ Room Availability</a>
+            <a href="{{ url_for('coming_soon', feature='Transfer Request') }}" class="nav-link">🔄 Transfer Request</a>
+            <a href="{{ url_for('coming_soon', feature='Cancel / Withdraw') }}" class="nav-link">❌ Cancel / Withdraw</a>
+        </nav>
+
+        <a href="{{ url_for('logout') }}" class="sidebar-logout">🚪 Logout</a>
+    </aside>
+
+    <div class="dash-content">
+        <header class="dash-topbar">
+            <div>
+                <h2>Hostel Application</h2>
+                <p>Read the guidelines below before applying.</p>
+            </div>
+            <div class="topbar-avatar">{{ user_id[0]|upper }}</div>
+        </header>
+
+        <div class="application-panel">
+            <h3>Application Guidelines</h3>
+            <ul class="guideline-list">
+                <li>You must be a currently enrolled full-time student to apply for hostel accommodation.</li>
+                <li>Keep your admission/registration number, government ID, and a recent passport-size photo ready before starting the form.</li>
+                <li>Applications are processed on a first-come, first-served basis, subject to eligibility and seat availability.</li>
+                <li>You may select up to 3 room/hostel preferences in order of priority.</li>
+                <li>Incomplete or incorrect applications may be rejected during document verification.</li>
+                <li>You will be notified of your application status and allotment on this dashboard once processed.</li>
+                <li>Hostel fees must be paid within the deadline mentioned in your allotment notice, or your seat may be released.</li>
+            </ul>
+
+            <div class="apply-cta">
+                <p>Ready to apply? Click below to fill out the official hostel application form.</p>
+                <a href="{{ form_url }}" target="_blank" rel="noopener" class="btn-glow apply-btn">
+                    Apply Now →
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
