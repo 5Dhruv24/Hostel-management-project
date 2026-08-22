@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from database import init_db, create_user, verify_user
+from database import (
+    init_db, create_user, verify_user,
+    seed_sample_data, get_all_applications, get_application_for_user, run_allocation
+)
 
 app = Flask(__name__)
 app.secret_key = "change-this-later-to-something-random"  # needed for login sessions
@@ -15,6 +18,7 @@ HOSTEL_APPLICATION_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfgCniUU
 
 # Make sure the database + users table exist when the app starts
 init_db()
+seed_sample_data()
 
 
 @app.route("/")
@@ -106,7 +110,40 @@ def apply_hostel():
 def coming_soon(feature):
     if "role" not in session:
         return redirect(url_for("login"))
-    return render_template("coming_soon.html", feature=feature)
+
+    if session["role"] == "admin":
+        back_url = url_for("admin_dashboard")
+    else:
+        back_url = url_for("student_dashboard")
+
+    return render_template("coming_soon.html", feature=feature, back_url=back_url)
+
+
+@app.route("/admin/student-list")
+def student_list():
+    if session.get("role") != "admin":
+        return redirect(url_for("login"))
+
+    applications = get_all_applications()
+    return render_template("admin_student_list.html", applications=applications, user_id=session["user_id"])
+
+
+@app.route("/admin/run-allocation", methods=["POST"])
+def run_allocation_route():
+    if session.get("role") != "admin":
+        return redirect(url_for("login"))
+
+    run_allocation()
+    return redirect(url_for("student_list"))
+
+
+@app.route("/my-allocation")
+def my_allocation():
+    if session.get("role") != "student":
+        return redirect(url_for("login"))
+
+    application = get_application_for_user(session["user_id"])
+    return render_template("my_allocation.html", application=application, user_id=session["user_id"])
 
 
 @app.route("/admin-dashboard")
@@ -115,5 +152,6 @@ def admin_dashboard():
         return redirect(url_for("login"))
     return render_template("dashboard_admin.html", user_id=session["user_id"])
 
+
 if __name__ == "__main__":
-    app.run(debug=True, use_reloader=False)
+    app.run(debug=True)

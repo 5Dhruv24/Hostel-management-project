@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Allocation - Smart Hostel System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dash-shell">
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <span class="brand-dot"></span> Smart Hostel
+        </div>
+
+        <nav class="sidebar-nav">
+            <span class="nav-label">Overview</span>
+            <a href="{{ url_for('student_dashboard') }}" class="nav-link">🏠 Home</a>
+
+            <span class="nav-label">Functions</span>
+            <a href="{{ url_for('coming_soon', feature='Hostel & Room Information') }}" class="nav-link">🏢 Hostel & Room Info</a>
+            <a href="{{ url_for('apply_hostel') }}" class="nav-link">📝 Student Application</a>
+            <a href="{{ url_for('my_allocation') }}" class="nav-link active">🏠 My Allocation</a>
+            <a href="{{ url_for('coming_soon', feature='Communication') }}" class="nav-link">💬 Communication</a>
+            <a href="{{ url_for('coming_soon', feature='Complaint') }}" class="nav-link">⚠️ Complaint</a>
+            <a href="{{ url_for('coming_soon', feature='Room Availability / Vacancy') }}" class="nav-link">🛏️ Room Availability</a>
+            <a href="{{ url_for('coming_soon', feature='Transfer Request') }}" class="nav-link">🔄 Transfer Request</a>
+            <a href="{{ url_for('coming_soon', feature='Cancel / Withdraw') }}" class="nav-link">❌ Cancel / Withdraw</a>
+        </nav>
+
+        <a href="{{ url_for('logout') }}" class="sidebar-logout">🚪 Logout</a>
+    </aside>
+
+    <div class="dash-content">
+        <header class="dash-topbar">
+            <div>
+                <h2>My Allocation</h2>
+                <p>Your personal hostel allocation result and reasoning.</p>
+            </div>
+            <div class="topbar-avatar">{{ user_id[0]|upper }}</div>
+        </header>
+
+        {% if not application %}
+        <div class="application-panel">
+            <h3>No application found</h3>
+            <p style="color: var(--text-muted); font-size: 14px;">
+                We don't have a hostel application on file for your account ({{ user_id }}) yet.
+                This demo currently uses sample data for accounts <strong>student1</strong> through
+                <strong>student5</strong> — log in as one of these to see a live example.
+            </p>
+        </div>
+
+        {% elif application.status == 'Pending' %}
+        <div class="application-panel">
+            <h3>Application Under Review</h3>
+            <p style="color: var(--text-muted); font-size: 14px;">
+                Your application has been received and is waiting for the allocation round to run.
+                Check back after the admin runs the next allocation cycle.
+            </p>
+        </div>
+
+        {% elif application.status == 'Allocated' %}
+        <div class="application-panel allocation-result allocation-success">
+            <div class="allocation-badge">✅ Allocated</div>
+            <h3>{{ application.allocated_hostel }} — Room {{ application.allocated_room }}</h3>
+            <p class="reasoning-text">{{ application.reasoning }}</p>
+        </div>
+
+        {% else %}
+        <div class="application-panel allocation-result allocation-waitlisted">
+            <div class="allocation-badge badge-waitlisted">🟡 Waitlisted</div>
+            <h3>You're currently on the waiting list</h3>
+            <p class="reasoning-text">{{ application.reasoning }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>

@@ -424,6 +424,107 @@ body {
   font-size: 15px;
 }
 
+/* ---------- Admin: Student List & Allocation table ---------- */
+
+.table-panel {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.data-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--glass-border);
+  vertical-align: top;
+}
+
+.data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.muted-small {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-allocated {
+  background: rgba(45, 212, 191, 0.15);
+  color: #2dd4bf;
+}
+
+.status-waitlisted {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+.status-pending {
+  background: rgba(148, 163, 184, 0.15);
+  color: var(--text-muted);
+}
+
+/* ---------- Student: My Allocation result card ---------- */
+
+.allocation-result {
+  max-width: 640px;
+}
+
+.allocation-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  background: rgba(45, 212, 191, 0.15);
+  color: #2dd4bf;
+}
+
+.badge-waitlisted {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+.allocation-success h3,
+.allocation-waitlisted h3 {
+  margin: 0 0 16px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+}
+
+.reasoning-text {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0;
+}
+
 .gallery-card {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--glass-border);

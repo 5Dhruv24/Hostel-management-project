@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student List & Allocation - Smart Hostel System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dash-shell">
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <span class="brand-dot"></span> Smart Hostel <span class="admin-tag">Admin</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <span class="nav-label">Overview</span>
+            <a href="{{ url_for('admin_dashboard') }}" class="nav-link">🏠 Admin Dashboard</a>
+
+            <span class="nav-label">Management</span>
+            <a href="{{ url_for('coming_soon', feature='Preferences') }}" class="nav-link">🎯 Preferences</a>
+            <a href="{{ url_for('coming_soon', feature='Complaints') }}" class="nav-link">⚠️ Complaints</a>
+            <a href="{{ url_for('student_list') }}" class="nav-link active">📋 Student List & Allocation</a>
+            <a href="{{ url_for('coming_soon', feature='Room Availability') }}" class="nav-link">🛏️ Room Availability</a>
+            <a href="{{ url_for('coming_soon', feature='Document Verification') }}" class="nav-link">📄 Document Verification</a>
+        </nav>
+
+        <a href="{{ url_for('logout') }}" class="sidebar-logout">🚪 Logout</a>
+    </aside>
+
+    <div class="dash-content">
+        <header class="dash-topbar">
+            <div>
+                <h2>Student List & Allocation</h2>
+                <p>Run the allocation engine and review results for every applicant.</p>
+            </div>
+            <form method="POST" action="{{ url_for('run_allocation_route') }}">
+                <button type="submit" class="btn-glow" style="width:auto; padding:12px 24px;">
+                    ▶ Run Allocation
+                </button>
+            </form>
+        </header>
+
+        <div class="table-panel">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Course</th>
+                        <th>Room Type</th>
+                        <th>Preferences</th>
+                        <th>Status</th>
+                        <th>Allocated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for app in applications %}
+                    <tr>
+                        <td>
+                            <strong>{{ app.full_name }}</strong><br>
+                            <span class="muted-small">{{ app.user_id }} · {{ app.gender }}</span>
+                        </td>
+                        <td>{{ app.course }}</td>
+                        <td>{{ app.room_type }}</td>
+                        <td class="muted-small">
+                            1. {{ app.pref1_hostel }}<br>
+                            2. {{ app.pref2_hostel }}<br>
+                            3. {{ app.pref3_hostel }}
+                        </td>
+                        <td>
+                            {% if app.status == 'Allocated' %}
+                                <span class="status-badge status-allocated">Allocated</span>
+                            {% elif app.status == 'Waitlisted' %}
+                                <span class="status-badge status-waitlisted">Waitlisted</span>
+                            {% else %}
+                                <span class="status-badge status-pending">Pending</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if app.allocated_hostel %}
+                                {{ app.allocated_hostel }} — Room {{ app.allocated_room }}
+                            {% else %}
+                                —
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

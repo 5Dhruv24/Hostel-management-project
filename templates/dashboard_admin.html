@@ -19,7 +19,7 @@
             <span class="nav-label">Management</span>
             <a href="{{ url_for('coming_soon', feature='Preferences') }}" class="nav-link">🎯 Preferences</a>
             <a href="{{ url_for('coming_soon', feature='Complaints') }}" class="nav-link">⚠️ Complaints</a>
-            <a href="{{ url_for('coming_soon', feature='Student List & Allocation') }}" class="nav-link">📋 Student List & Allocation</a>
+            <a href="{{ url_for('student_list') }}" class="nav-link">📋 Student List & Allocation</a>
             <a href="{{ url_for('coming_soon', feature='Room Availability') }}" class="nav-link">🛏️ Room Availability</a>
             <a href="{{ url_for('coming_soon', feature='Document Verification') }}" class="nav-link">📄 Document Verification</a>
         </nav>
@@ -37,7 +37,7 @@
         </header>
 
         <section class="stat-grid">
-            <a href="{{ url_for('coming_soon', feature='Student List & Allocation') }}" class="stat-card accent-violet">
+            <a href="{{ url_for('student_list') }}" class="stat-card accent-violet">
                 <div class="stat-icon">📋</div>
                 <div>
                     <h4>Student List & Allocation</h4>

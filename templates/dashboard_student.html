@@ -19,6 +19,7 @@
             <span class="nav-label">Functions</span>
             <a href="{{ url_for('coming_soon', feature='Hostel & Room Information') }}" class="nav-link">🏢 Hostel & Room Info</a>
             <a href="{{ url_for('apply_hostel') }}" class="nav-link">📝 Student Application</a>
+            <a href="{{ url_for('my_allocation') }}" class="nav-link">🏠 My Allocation</a>
             <a href="{{ url_for('coming_soon', feature='Hostel Information') }}" class="nav-link">ℹ️ Hostel Information</a>
             <a href="{{ url_for('coming_soon', feature='Communication') }}" class="nav-link">💬 Communication</a>
             <a href="{{ url_for('coming_soon', feature='Complaint') }}" class="nav-link">⚠️ Complaint</a>
@@ -45,6 +46,14 @@
                 <div>
                     <h4>Application</h4>
                     <p>Not submitted yet</p>
+                </div>
+            </a>
+
+            <a href="{{ url_for('my_allocation') }}" class="stat-card accent-teal">
+                <div class="stat-icon">🏠</div>
+                <div>
+                    <h4>My Allocation</h4>
+                    <p>See your result & why</p>
                 </div>
             </a>
 
