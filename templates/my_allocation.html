@@ -14,20 +14,20 @@
 
         <nav class="sidebar-nav">
             <span class="nav-label">Overview</span>
-            <a href="{{ url_for('student_dashboard') }}" class="nav-link">🏠 Home</a>
+            <a href="{{ url_for('student_dashboard') }}" class="nav-link">Home</a>
 
             <span class="nav-label">Functions</span>
-            <a href="{{ url_for('coming_soon', feature='Hostel & Room Information') }}" class="nav-link">🏢 Hostel & Room Info</a>
-            <a href="{{ url_for('apply_hostel') }}" class="nav-link">📝 Student Application</a>
-            <a href="{{ url_for('my_allocation') }}" class="nav-link active">🏠 My Allocation</a>
-            <a href="{{ url_for('coming_soon', feature='Communication') }}" class="nav-link">💬 Communication</a>
-            <a href="{{ url_for('coming_soon', feature='Complaint') }}" class="nav-link">⚠️ Complaint</a>
-            <a href="{{ url_for('coming_soon', feature='Room Availability / Vacancy') }}" class="nav-link">🛏️ Room Availability</a>
-            <a href="{{ url_for('coming_soon', feature='Transfer Request') }}" class="nav-link">🔄 Transfer Request</a>
-            <a href="{{ url_for('coming_soon', feature='Cancel / Withdraw') }}" class="nav-link">❌ Cancel / Withdraw</a>
+            <a href="{{ url_for('coming_soon', feature='Hostel & Room Information') }}" class="nav-link">Hostel & Room Info</a>
+            <a href="{{ url_for('apply_hostel') }}" class="nav-link">Student Application</a>
+            <a href="{{ url_for('my_allocation') }}" class="nav-link active">My Allocation</a>
+            <a href="{{ url_for('coming_soon', feature='Communication') }}" class="nav-link">Communication</a>
+            <a href="{{ url_for('coming_soon', feature='Complaint') }}" class="nav-link">Complaint</a>
+            <a href="{{ url_for('waiting_list_status') }}" class="nav-link">Waiting List</a>
+            <a href="{{ url_for('student_fairness') }}" class="nav-link">Fairness & Transparency</a>
+            <a href="{{ url_for('coming_soon', feature='Transfer Request') }}" class="nav-link">Transfer Request</a>
         </nav>
 
-        <a href="{{ url_for('logout') }}" class="sidebar-logout">🚪 Logout</a>
+        <a href="{{ url_for('logout') }}" class="sidebar-logout">Logout</a>
     </aside>
 
     <div class="dash-content">
@@ -45,7 +45,7 @@
             <p style="color: var(--text-muted); font-size: 14px;">
                 We don't have a hostel application on file for your account ({{ user_id }}) yet.
                 This demo currently uses sample data for accounts <strong>student1</strong> through
-                <strong>student5</strong> — log in as one of these to see a live example.
+                <strong>student30</strong> — log in as one of these to see a live example.
             </p>
         </div>
 
@@ -60,17 +60,60 @@
 
         {% elif application.status == 'Allocated' %}
         <div class="application-panel allocation-result allocation-success">
-            <div class="allocation-badge">✅ Allocated</div>
+            <div class="allocation-badge">Allocated</div>
             <h3>{{ application.allocated_hostel }} — Room {{ application.allocated_room }}</h3>
             <p class="reasoning-text">{{ application.reasoning }}</p>
+
+            <form method="POST" action="{{ url_for('withdraw_application_route') }}" class="withdraw-form"
+                  onsubmit="return confirm('Are you sure you want to withdraw your allocated room? This cannot be undone.');">
+                <button type="submit" class="btn-withdraw">Withdraw My Room</button>
+            </form>
         </div>
 
-        {% else %}
+        {% elif application.status == 'Waiting' %}
         <div class="application-panel allocation-result allocation-waitlisted">
-            <div class="allocation-badge badge-waitlisted">🟡 Waitlisted</div>
+            <div class="allocation-badge badge-waitlisted">Waiting List</div>
             <h3>You're currently on the waiting list</h3>
+
+            <div class="waiting-stats-grid">
+                <div class="waiting-stat">
+                    <span class="waiting-stat-label">Your Position</span>
+                    <span class="waiting-stat-value">#{{ waiting_position }}</span>
+                </div>
+                <div class="waiting-stat">
+                    <span class="waiting-stat-label">Students Ahead</span>
+                    <span class="waiting-stat-value">{{ waiting_position - 1 }}</span>
+                </div>
+                <div class="waiting-stat">
+                    <span class="waiting-stat-label">Students Behind</span>
+                    <span class="waiting-stat-value">{{ waiting_total - waiting_position }}</span>
+                </div>
+                <div class="waiting-stat">
+                    <span class="waiting-stat-label">Priority Score</span>
+                    <span class="waiting-stat-value">{{ application.priority_score }}</span>
+                </div>
+            </div>
+
             <p class="reasoning-text">{{ application.reasoning }}</p>
+            <p class="transparency-note">
+                Your position is calculated automatically and updates live — it's based on your
+                priority category ({{ application.priority_note }}) compared to every other student
+                still waiting. If someone above you cancels or is allocated a room, your position
+                moves up automatically — no manual changes needed.
+            </p>
+
+            <form method="POST" action="{{ url_for('withdraw_application_route') }}" class="withdraw-form"
+                  onsubmit="return confirm('Are you sure you want to withdraw from the waiting list?');">
+                <button type="submit" class="btn-withdraw">Withdraw My Application</button>
+            </form>
         </div>
+
+        {% elif application.status == 'Cancelled' %}
+        <div class="application-panel">
+            <h3>Application Cancelled</h3>
+            <p style="color: var(--text-muted); font-size: 14px;">{{ application.reasoning }}</p>
+        </div>
+
         {% endif %}
     </div>
 

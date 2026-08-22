@@ -14,17 +14,19 @@
 
         <nav class="sidebar-nav">
             <span class="nav-label">Overview</span>
-            <a href="{{ url_for('admin_dashboard') }}" class="nav-link active">🏠 Admin Dashboard</a>
+            <a href="{{ url_for('admin_dashboard') }}" class="nav-link active">Admin Dashboard</a>
 
             <span class="nav-label">Management</span>
-            <a href="{{ url_for('coming_soon', feature='Preferences') }}" class="nav-link">🎯 Preferences</a>
-            <a href="{{ url_for('coming_soon', feature='Complaints') }}" class="nav-link">⚠️ Complaints</a>
-            <a href="{{ url_for('student_list') }}" class="nav-link">📋 Student List & Allocation</a>
-            <a href="{{ url_for('coming_soon', feature='Room Availability') }}" class="nav-link">🛏️ Room Availability</a>
-            <a href="{{ url_for('coming_soon', feature='Document Verification') }}" class="nav-link">📄 Document Verification</a>
+            <a href="{{ url_for('coming_soon', feature='Preferences') }}" class="nav-link">Preferences</a>
+            <a href="{{ url_for('coming_soon', feature='Complaints') }}" class="nav-link">Complaints</a>
+            <a href="{{ url_for('student_list') }}" class="nav-link">Student List & Allocation</a>
+            <a href="{{ url_for('admin_waiting_list') }}" class="nav-link">Waiting List</a>
+            <a href="{{ url_for('admin_fairness') }}" class="nav-link">Fairness & Transparency</a>
+            <a href="{{ url_for('coming_soon', feature='Room Availability') }}" class="nav-link">Room Availability</a>
+            <a href="{{ url_for('coming_soon', feature='Document Verification') }}" class="nav-link">Document Verification</a>
         </nav>
 
-        <a href="{{ url_for('logout') }}" class="sidebar-logout">🚪 Logout</a>
+        <a href="{{ url_for('logout') }}" class="sidebar-logout">Logout</a>
     </aside>
 
     <div class="dash-content">
@@ -42,6 +44,14 @@
                 <div>
                     <h4>Student List & Allocation</h4>
                     <p>See which room is allotted to which student</p>
+                </div>
+            </a>
+
+            <a href="{{ url_for('admin_waiting_list') }}" class="stat-card accent-amber">
+                <div class="stat-icon">🟡</div>
+                <div>
+                    <h4>Waiting List</h4>
+                    <p>Live ranking & room availability</p>
                 </div>
             </a>
 

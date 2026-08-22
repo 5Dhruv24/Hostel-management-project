@@ -14,20 +14,19 @@
 
         <nav class="sidebar-nav">
             <span class="nav-label">Overview</span>
-            <a href="{{ url_for('student_dashboard') }}" class="nav-link">🏠 Home</a>
+            <a href="{{ url_for('student_dashboard') }}" class="nav-link">Home</a>
 
             <span class="nav-label">Functions</span>
-            <a href="{{ url_for('coming_soon', feature='Hostel & Room Information') }}" class="nav-link">🏢 Hostel & Room Info</a>
-            <a href="{{ url_for('apply_hostel') }}" class="nav-link active">📝 Student Application</a>
-            <a href="{{ url_for('coming_soon', feature='Hostel Information') }}" class="nav-link">ℹ️ Hostel Information</a>
-            <a href="{{ url_for('coming_soon', feature='Communication') }}" class="nav-link">💬 Communication</a>
-            <a href="{{ url_for('coming_soon', feature='Complaint') }}" class="nav-link">⚠️ Complaint</a>
-            <a href="{{ url_for('coming_soon', feature='Room Availability / Vacancy') }}" class="nav-link">🛏️ Room Availability</a>
-            <a href="{{ url_for('coming_soon', feature='Transfer Request') }}" class="nav-link">🔄 Transfer Request</a>
-            <a href="{{ url_for('coming_soon', feature='Cancel / Withdraw') }}" class="nav-link">❌ Cancel / Withdraw</a>
+            <a href="{{ url_for('coming_soon', feature='Hostel & Room Information') }}" class="nav-link">Hostel & Room Info</a>
+            <a href="{{ url_for('apply_hostel') }}" class="nav-link active">Student Application</a>
+            <a href="{{ url_for('coming_soon', feature='Communication') }}" class="nav-link">Communication</a>
+            <a href="{{ url_for('coming_soon', feature='Complaint') }}" class="nav-link">Complaint</a>
+            <a href="{{ url_for('waiting_list_status') }}" class="nav-link">Waiting List</a>
+            <a href="{{ url_for('student_fairness') }}" class="nav-link">Fairness & Transparency</a>
+            <a href="{{ url_for('coming_soon', feature='Transfer Request') }}" class="nav-link">Transfer Request</a>
         </nav>
 
-        <a href="{{ url_for('logout') }}" class="sidebar-logout">🚪 Logout</a>
+        <a href="{{ url_for('logout') }}" class="sidebar-logout">Logout</a>
     </aside>
 
     <div class="dash-content">

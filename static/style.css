@@ -489,6 +489,89 @@ body {
   color: var(--text-muted);
 }
 
+.status-cancelled {
+  background: rgba(248, 113, 113, 0.15);
+  color: #fca5a5;
+}
+
+.rooms-left-banner {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 14px;
+  color: var(--text-main);
+  margin-bottom: 20px;
+}
+
+.rooms-left-banner strong {
+  color: var(--accent);
+}
+
+.row-highlight {
+  background: rgba(56, 189, 248, 0.06);
+}
+
+.you-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #05070d;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* ---------- Fairness / transparency panel ---------- */
+
+.fairness-panel {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  max-width: 720px;
+}
+
+.fairness-panel h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  margin: 0 0 4px;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 44px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.bar-label {
+  color: var(--text-main);
+}
+
+.bar-track {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #6366f1);
+  border-radius: 999px;
+}
+
+.bar-value {
+  text-align: right;
+  color: var(--accent);
+  font-weight: 600;
+}
+
 /* ---------- Student: My Allocation result card ---------- */
 
 .allocation-result {
@@ -523,6 +606,68 @@ body {
   font-size: 14px;
   line-height: 1.7;
   margin: 0;
+}
+
+.waiting-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.waiting-stat {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+
+.waiting-stat-label {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.waiting-stat-value {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  color: var(--accent);
+}
+
+.transparency-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 14px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.withdraw-form {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.btn-withdraw {
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  color: #fca5a5;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-withdraw:hover {
+  background: rgba(248, 113, 113, 0.18);
 }
 
 .gallery-card {

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fairness & Transparency - Smart Hostel System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dash-shell">
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <span class="brand-dot"></span> Smart Hostel <span class="admin-tag">Admin</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <span class="nav-label">Overview</span>
+            <a href="{{ url_for('admin_dashboard') }}" class="nav-link">Admin Dashboard</a>
+
+            <span class="nav-label">Management</span>
+            <a href="{{ url_for('coming_soon', feature='Preferences') }}" class="nav-link">Preferences</a>
+            <a href="{{ url_for('coming_soon', feature='Complaints') }}" class="nav-link">Complaints</a>
+            <a href="{{ url_for('student_list') }}" class="nav-link">Student List & Allocation</a>
+            <a href="{{ url_for('admin_waiting_list') }}" class="nav-link">Waiting List</a>
+            <a href="{{ url_for('admin_fairness') }}" class="nav-link active">Fairness & Transparency</a>
+            <a href="{{ url_for('coming_soon', feature='Document Verification') }}" class="nav-link">Document Verification</a>
+        </nav>
+
+        <a href="{{ url_for('logout') }}" class="sidebar-logout">Logout</a>
+    </aside>
+
+    <div class="dash-content">
+        <header class="dash-topbar">
+            <div>
+                <h2>Fairness & Transparency</h2>
+                <p>Proof that allocation is driven only by priority rules — not bias.</p>
+            </div>
+        </header>
+
+        <section class="stat-grid" style="margin-bottom: 28px;">
+            <div class="stat-card accent-teal" style="cursor: default;">
+                <div class="stat-icon">✅</div>
+                <div>
+                    <h4>{{ stats.avg_allocated }}</h4>
+                    <p>Avg. Priority Score — Allocated</p>
+                </div>
+            </div>
+            <div class="stat-card accent-amber" style="cursor: default;">
+                <div class="stat-icon">🟡</div>
+                <div>
+                    <h4>{{ stats.avg_waiting }}</h4>
+                    <p>Avg. Priority Score — Waiting</p>
+                </div>
+            </div>
+        </section>
+
+        <p class="transparency-note" style="margin: 0 0 24px; padding: 0; border: none;">
+            If the allocation engine is applying priority rules correctly, the average score of
+            <strong>Allocated</strong> students should be noticeably higher than <strong>Waiting</strong>
+            students — this confirms it, using real numbers from the current allocation round.
+        </p>
+
+        <div class="fairness-panel">
+            <h3>Allocation Rate by Gender</h3>
+            <p class="muted-small" style="margin: 0 0 16px;">
+                Should be roughly similar across genders — confirms no gender bias in outcomes.
+            </p>
+            {% for row in stats.by_gender %}
+            <div class="bar-row">
+                <div class="bar-label">{{ row.label }} <span class="muted-small">({{ row.allocated }}/{{ row.total }})</span></div>
+                <div class="bar-track">
+                    <div class="bar-fill" data-rate="{{ row.rate }}"></div>
+                </div>
+                <div class="bar-value">{{ row.rate }}%</div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="fairness-panel" style="margin-top: 24px;">
+            <h3>Allocation Rate by Priority Category</h3>
+            <p class="muted-small" style="margin: 0 0 16px;">
+                Higher-priority categories should show a higher allocation rate — confirms the
+                priority rules are actually being applied, not ignored.
+            </p>
+            {% for row in stats.by_category %}
+            <div class="bar-row">
+                <div class="bar-label">{{ row.label }} <span class="muted-small">({{ row.allocated }}/{{ row.total }})</span></div>
+                <div class="bar-track">
+                    <div class="bar-fill" data-rate="{{ row.rate }}"></div>
+                </div>
+                <div class="bar-value">{{ row.rate }}%</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        // Set each bar's width from its data-rate attribute (kept out of
+        // the style attribute so editors don't misread template syntax
+        // as literal, invalid CSS).
+        document.querySelectorAll(".bar-fill").forEach(function (bar) {
+            const rate = bar.getAttribute("data-rate");
+            bar.style.width = rate + "%";
+        });
+    </script>
+
+</body>
+</html>
