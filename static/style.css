@@ -699,3 +699,124 @@ body {
   font-size: 13px;
   color: var(--text-muted);
 }
+
+/* ========================================================
+   RESPONSIVE / MOBILE STYLES
+   Everything below this line only applies on small screens
+   (phones and small tablets, roughly 768px wide or less).
+   ======================================================== */
+
+/* Tables can be wider than the screen - let them scroll
+   sideways inside their own box instead of breaking the page. */
+.table-panel {
+  overflow-x: auto;
+}
+
+.data-table {
+  min-width: 640px;
+}
+
+@media (max-width: 768px) {
+
+  /* --- Login / signup card --- */
+  .brand h1 {
+    font-size: 24px;
+  }
+
+  .glass-card {
+    padding: 22px;
+  }
+
+  /* --- Dashboard layout: sidebar becomes a horizontal
+     scrollable bar across the top instead of a tall left column --- */
+  .dash-shell {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    overflow-x: auto;
+    padding: 12px;
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  .sidebar-brand {
+    margin-bottom: 0;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    flex: none;
+    gap: 4px;
+  }
+
+  .nav-label {
+    display: none; /* section labels take too much horizontal space on mobile */
+  }
+
+  .nav-link {
+    flex-shrink: 0;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .sidebar-logout {
+    flex-shrink: 0;
+    margin-top: 0;
+    margin-left: 4px;
+  }
+
+  .dash-content {
+    padding: 16px;
+  }
+
+  .dash-topbar {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px 18px;
+  }
+
+  .dash-topbar h2 {
+    font-size: 17px;
+  }
+
+  /* --- Cards / grids collapse to a single column sooner --- */
+  .stat-grid,
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .waiting-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* --- Fairness bar charts: stack instead of 3 tight columns --- */
+  .bar-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    margin-bottom: 18px;
+  }
+
+  .bar-value {
+    text-align: left;
+  }
+
+  /* --- Application/allocation panels --- */
+  .application-panel,
+  .fairness-panel {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .topbar-avatar {
+    display: none; /* saves space on very small phone screens */
+  }
+}
