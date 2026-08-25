@@ -7,7 +7,7 @@ from database import (
 )
 
 app = Flask(__name__)
-app.secret_key = "change-this-later-to-something-random"  # needed for login sessions
+app.secret_key = "dhruv"  # needed for login sessions
 
 # --- Hardcoded admin credentials ---
 # Only someone who knows these exact values can access the admin dashboard.
